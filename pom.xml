@@ -22,15 +22,10 @@
 		<logback-version>1.1.7</logback-version>
 		<aspect-version>1.6.11</aspect-version>
 		<jedis-version>2.4.2</jedis-version>
-		<!--<freemarker-version>2.3.19</freemarker-version>
-		<aspect-version>1.6.11</aspect-version>
-		<jedis-version>2.4.2</jedis-version>
-		<kxd.framework.version>2.0.0-SNAPSHOT</kxd.framework.version>-->
 	</properties>
 
 	<dependencyManagement>
 		<dependencies>
-			<!--framework-->
 			<dependency>
 				<groupId>com.kxjf.talos</groupId>
 				<artifactId>talos-brave</artifactId>
