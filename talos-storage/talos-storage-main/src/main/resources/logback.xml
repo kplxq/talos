@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <!--
+ - Copyright 2012-2017 Kaixindai Financing Services Jiangsu Co., Ltd.
+ -  
+ - Licensed under the Apache License, Version 2.0 (the "License");
+ - you may not use this file except in compliance with the License.
+ - You may obtain a copy of the License at
+ -  
+ -      http://www.apache.org/licenses/LICENSE-2.0
+ -  
+ - Unless required by applicable law or agreed to in writing, software
+ - distributed under the License is distributed on an "AS IS" BASIS,
+ - WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ - See the License for the specific language governing permissions and
+ - limitations under the License.
+-->
+<!-- scan属性为true，可动态加载。 -->
+<configuration scan="false" scanPeriod="60 seconds" debug="false">
+	<!--属性配置引入 -->
+	<property resource="properties/logback.properties" />
+	<!-- 控制台只打error appender配置 -->
+	<appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<pattern>%date|%thread|%X{invokeNo}|%level|%logger{0}|%msg%n
+			</pattern>
+		</encoder>
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+			<level>ERROR</level>
+			<onMatch>ACCEPT</onMatch>
+			<onMismatch>DENY</onMismatch>
+		</filter>
+	</appender>
+
+	<!-- 控制台开发测试使用 appender配置 -->
+	<appender name="stdoutForDev" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<pattern>%date|%thread|%X{invokeNo}|%level|%logger{0}|%msg%n
+			</pattern>
+		</encoder>
+		<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+			<level>DEBUG</level>
+		</filter>
+	</appender>
+
+
+	<!--非error日志的appender配置 -->
+	<appender name="otherAppender"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<!-- 正在记录的日志文件的路径及文件名 -->
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<!--日志文件输出的文件名 -->
+			<fileNamePattern>${LOG_HOME}/${OTHERS_LOG_FILE}</fileNamePattern>
+			<!--日志文件保留天数 -->
+			<MaxHistory>${LOG_SAVE_DAYS}</MaxHistory>
+		</rollingPolicy>
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<pattern>%date|%thread|%X{invokeNo}|%level|%logger{0}|%msg%n
+			</pattern>
+		</encoder>
+		<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+			<level>WARN</level>
+		</filter>
+	</appender>
+
+	<root>
+		<level value="DEBUG" />
+		<appender-ref ref="otherAppender" />
+		<appender-ref ref="stdout" />
+		<!--<appender-ref ref="stdoutForDev" />-->
+	</root>
+
+</configuration>

@@ -1,0 +1,2 @@
+trace-server=com.kxd.talos.trace.interceptor.server.rpc.dubbo.TalosDubboRpcServerInterceptor
+trace-client=com.kxd.talos.trace.interceptor.server.rpc.dubbo.TalosDubboRpcClientInterceptor

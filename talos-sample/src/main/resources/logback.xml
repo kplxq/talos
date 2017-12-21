@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- scan属性为true，可动态加载。 -->
+<configuration scan="false" scanPeriod="60 seconds" debug="false">
+	<!--属性配置引入 -->
+	<property resource="properties/logback.properties" />
+
+	<!-- 控制台只打error appender配置 -->
+	<appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<pattern>%msg%n</pattern>
+		</encoder>
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+			<level>ERROR</level>
+			<onMatch>ACCEPT</onMatch>
+			<onMismatch>DENY</onMismatch>
+		</filter>
+	</appender>
+
+	<!-- 控制台开发测试使用 appender配置 -->
+	<appender name="stdoutForDev" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<pattern>%date|%thread|%X{invokeNo}|%level|%logger{0}|%msg%n
+			</pattern>
+		</encoder>
+		<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+			<level>DEBUG</level>
+		</filter>
+	</appender>
+
+	<!--用户请求日志的appender配置 -->
+	<appender name="actionAccessAppender"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<!-- 正在记录的日志文件的路径及文件名 -->
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<!--日志文件输出的文件名 -->
+			<fileNamePattern>${LOG_HOME}/${ACTION_ACCESS_LOG_FILE}
+			</fileNamePattern>
+			<!--日志文件保留天数 -->
+			<MaxHistory>${LOG_SAVE_DAYS}</MaxHistory>
+		</rollingPolicy>
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<pattern>%date|%thread|%X{invokeNo}|%level|%logger{0}|%msg%n
+			</pattern>
+		</encoder>
+	</appender>
+	<!--用户请求日志的appender配置 -->
+	<appender name="talosTraceCollectorFileAppender"
+			  class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<!-- 正在记录的日志文件的路径及文件名 -->
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<!--日志文件输出的文件名 -->
+			<fileNamePattern>${LOG_HOME}/${TALOS_TRACE_LOG_FILE}
+			</fileNamePattern>
+			<!--日志文件保留天数 -->
+			<MaxHistory>${LOG_SAVE_DAYS}</MaxHistory>
+		</rollingPolicy>
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<pattern>%msg%n</pattern>
+		</encoder>
+	</appender>
+	<appender name="talosKafkaAppender"
+			  class="com.github.danielwegener.logback.kafka.KafkaAppender">
+		<encoder
+				class="com.github.danielwegener.logback.kafka.encoding.LayoutKafkaMessageEncoder">
+			<layout class="ch.qos.logback.classic.PatternLayout">
+				<pattern> %msg</pattern>
+			</layout>
+		</encoder>
+		<topic>${KAFKA_TOPIC_NAME}</topic>
+		<keyingStrategy
+				class="com.github.danielwegener.logback.kafka.keying.RoundRobinKeyingStrategy" />
+		<deliveryStrategy
+				class="com.github.danielwegener.logback.kafka.delivery.AsynchronousDeliveryStrategy" />
+		<producerConfig>bootstrap.servers=${KAFKA_BOOTSTRAP_SERVERS}
+		</producerConfig>
+		<!-- this is the fallback appender if kafka is not available. -->
+		<appender-ref ref="talosTraceCollectorAppender" />
+	</appender>
+	<appender name="asyncTalosKafkaAppender" class="ch.qos.logback.classic.AsyncAppender">
+		<appender-ref ref="talosKafkaAppender" />
+	</appender>
+	<logger name="com.kxd.talos.trace.core.collector" level="ALL"
+			additivity="true">
+		<appender-ref ref="asyncTalosKafkaAppender" />
+		<appender-ref ref="talosTraceCollectorFileAppender" />
+	</logger>
+	<!-- kafka 的日志，无需在业务系统中打印-->
+	<logger name="org.apache.kafka" level="OFF"/>
+
+	<logger name="Access" level="ALL" additivity="false">
+		<appender-ref ref="actionAccessAppender" />
+	</logger>
+
+	<root>
+		<level value="DEBUG" />
+		<appender-ref ref="kxdAppErrorAppender" />
+		<appender-ref ref="kxdAppAppender" />
+
+		<appender-ref ref="stdout" />
+		<!-- 开发环境使用，打印控制台日志：打印非以上配置的其他日志 -->
+
+	</root>
+</configuration>

@@ -1,0 +1,108 @@
+Copyright 2012-2017 Kaixindai Financing Services Jiangsu Co., Ltd.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+================================================================
+Dependencies:
+
+Spring:
+
+  * LICENSE:
+    * http://www.apache.org/licenses/LICENSE-2.0 (Apache License 2.0)
+  * HOMEPAGE:
+    * http://www.springsource.org
+
+Javassist:
+
+  * LICENSE:
+    * http://www.apache.org/licenses/LICENSE-2.0 (Apache License 2.0)
+  * HOMEPAGE:
+    * http://www.jboss.org/javassist
+
+Netty:
+
+  * LICENSE:
+    * http://www.apache.org/licenses/LICENSE-2.0 (Apache License 2.0)
+  * HOMEPAGE:
+    * http://netty.io
+
+Mina:
+
+  * LICENSE:
+    * http://www.apache.org/licenses/LICENSE-2.0 (Apache License 2.0)
+  * HOMEPAGE:
+    * http://mina.apache.org
+
+
+HttpClient:
+
+  * LICENSE:
+    * http://www.apache.org/licenses/LICENSE-2.0 (Apache License 2.0)
+  * HOMEPAGE:
+    * http://hc.apache.org
+
+Zookeeper:
+
+  * LICENSE:
+    * http://www.apache.org/licenses/LICENSE-2.0 (Apache License 2.0)
+  * HOMEPAGE:
+    * http://zookeeper.apache.org
+
+Jedis:
+
+  * LICENSE:
+    * http://www.apache.org/licenses/LICENSE-2.0 (Apache License 2.0)
+  * HOMEPAGE:
+    * http://code.google.com/p/jedis
+
+Jetty:
+
+  * LICENSE:
+    * http://www.apache.org/licenses/LICENSE-2.0 (Apache License 2.0)
+  * HOMEPAGE:
+    * http://jetty.mortbay.org
+
+HibernateValidator:
+
+  * LICENSE:
+    * http://www.apache.org/licenses/LICENSE-2.0 (Apache License 2.0)
+  * HOMEPAGE:
+    * http://www.hibernate.org/subprojects/validator.html
+
+CommonsLogging:
+
+  * LICENSE:
+    * http://www.apache.org/licenses/LICENSE-2.0 (Apache License 2.0)
+  * HOMEPAGE:
+    * http://commons.apache.org/logging
+
+brave
+  * LICENSE:
+    * http://www.apache.org/licenses/LICENSE-2.0 (Apache License 2.0)
+  * HOMEPAGE:
+    * https://github.com/openzipkin/brave
+
+SLF4J:
+
+  * LICENSE:
+    * http://www.apache.org/licenses/LICENSE-2.0 (Apache License 2.0)
+  * HOMEPAGE:
+    * http://www.slf4j.org
+
+Log4j:
+
+  * LICENSE:
+    * http://www.apache.org/licenses/LICENSE-2.0 (Apache License 2.0)
+  * HOMEPAGE:
+    * http://log4j.apache.org
+    

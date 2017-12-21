@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <!--
+ - Copyright 2012-2017 Kaixindai Financing Services Jiangsu Co., Ltd.
+ -  
+ - Licensed under the Apache License, Version 2.0 (the "License");
+ - you may not use this file except in compliance with the License.
+ - You may obtain a copy of the License at
+ -  
+ -      http://www.apache.org/licenses/LICENSE-2.0
+ -  
+ - Unless required by applicable law or agreed to in writing, software
+ - distributed under the License is distributed on an "AS IS" BASIS,
+ - WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ - See the License for the specific language governing permissions and
+ - limitations under the License.
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd
+    http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.1.xsd
+    http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.1.xsd"
+	default-autowire="byName">
+
+	<!-- local tracer interceptor config begins -->
+	<!-- 配置local interceptor类 -->
+	<bean id="talosServiceTraceInterceptor" class="com.kxd.talos.core.trace.TalosTraceInterceptor">
+		<property name="filterArgs" value="certNo,password" />
+		<property name="talos" ref="talos" />
+	</bean>
+
+	<!-- 开启aop开关 -->
+	<aop:config proxy-target-class="true" />
+
+	<!-- 配置aop切片 -->
+	<aop:config>
+		<aop:pointcut id="talosServiceTracePointcut"
+			expression="@within(com.kxd.talos.core.trace.TalosTrace)" />
+		<aop:advisor advice-ref="talosServiceTraceInterceptor"
+			pointcut-ref="talosServiceTracePointcut" order="100" />
+	</aop:config>
+	<!-- local tracer interceptor config ends -->
+
+    <!-- http server servlet filter config begins -->
+	<bean id="httpServerServletFilter"
+		class="com.kxd.talos.trace.interceptor.server.http.TalosServletFilter">
+		<property name="talos" ref="talos" />
+		<!-- 配置需要过滤的url,可使用*进行匹配 -->
+		<property name="patterns" value="/**" />
+	</bean>
+    <!-- http server servlet filter config ends -->
+
+	<!-- http client interceptor config begins -->
+	<bean id="httpClientTemplate"
+		class="com.kxd.talos.trace.interceptor.server.http.HttpClientTemplate">
+		<constructor-arg ref="talos" />
+	</bean>
+    <!-- http client interceptor config ends -->
+</beans>

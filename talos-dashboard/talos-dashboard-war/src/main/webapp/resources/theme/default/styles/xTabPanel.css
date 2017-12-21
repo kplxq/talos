@@ -1,0 +1,145 @@
+.jTabPanel {
+}
+.jTabPanelBorder {
+  border: 0;
+}
+.jTabPanel * {
+  cursor: default;
+}
+.jTabPanel .tab-contrl-wrap {
+  width: 100%;
+  height: 26px;
+  padding-top: 3px;
+  /*border-bottom: solid 1px #315193;*/
+  background-color: #898989;
+  white-space: nowrap;
+  position: relative;
+  overflow: hidden;
+  padding: 10px 0 0 0;
+}
+.jTabPanel .tab-contrl-wrap .tab-scroll {
+  position: absolute;
+  bottom: 0;
+  width: 20px;
+  height: 25px;
+  line-height: 22px;
+  display: none;
+  background-color: #CCCCCC;
+  border: solid 1px #797979;
+  border-bottom: 0;
+  text-align: center;
+  z-index: 1;
+  background:url(../images/kxficon.png)  no-repeat;
+}
+.jTabPanel .tab-contrl-wrap .tab-left-button {
+  left: 0px;
+  border-left: 0;
+  background-position: -104px -33px;
+}
+.jTabPanel .tab-contrl-wrap .tab-right-button {
+  right: 0px;
+  border-right: 0;
+  background-position: -131px -33px;
+}
+.jTabPanel .tab-contrl-wrap .tab-button-disabled {
+  opacity: 0.5;
+  -moz-opacity: 0.5;
+  filter: alpha(opacity = 50);
+  color: #7D7D7D;
+  cursor: default;
+}
+.jTabPanel .tab-contrl-wrap .show {
+  display: block;
+  font-weight:bold;
+  cursor:pointer;
+  background:#fff;
+}
+.jTabPanel .tab-contrl-wrap .tab-item-wrap {
+  overflow: hidden;
+
+}
+.jTabPanel .tab-contrl-wrap .tab-item-wrap-scroll {
+  margin-left: 21px;
+  padding-right: 2px;
+}
+.jTabPanel .tab-contrl-wrap .tab-item-wrap .tab-item-move {
+  width: 10000px;
+  margin: 0;
+  padding: 0;
+}
+.jTabPanel .tab-contrl-wrap .tab-item-wrap .tab-item-move li {
+  float: left;
+  list-style: none;
+  margin-left: 10px;
+  display: inline; /*IE6双倍margin的bug*/
+  /*border: solid 1px #315193;height: 26px;*/
+  padding: 0 5px 0 0px;
+  background: #AAA;
+  color: #FFF;
+  position: relative;
+  border-top-left-radius:2px;border-top-right-radius:2px;
+  cursor:pointer;
+}
+
+.jTabPanel .tab-contrl-wrap .tab-item-wrap .tab-item-move li.active {
+  border-bottom: solid 1px transprent;
+  background-color: #299CDB;
+  color: #FFFFFF;
+}
+.jTabPanel .tab-contrl-wrap .tab-item-wrap .tab-item-move li .tab-item-title {
+  margin:0 4px 0 9px;
+  padding-left: 4px;
+  /* height: 26px; */
+  line-height: 26px;
+  overflow: hidden;
+  float: left;
+  display: inline;
+  cursor:pointer;
+}
+.jTabPanel .tab-contrl-wrap .tab-item-wrap .tab-item-move li .tab-item-title-nopadding {
+  padding-left: 0px;
+}
+.jTabPanel .tab-contrl-wrap .tab-item-wrap .tab-item-move li .fix {
+  float: left;
+  height: 22px;
+  line-height: 22px;
+  margin-right: 4px;
+  display: inline;
+}
+.jTabPanel .tab-contrl-wrap .tab-item-wrap .tab-item-move li .tab-item-title-icon {
+  width: 9px;
+  /* height: 22px; */
+  float: left;
+  background-repeat: no-repeat;
+}
+.jTabPanel .panel-spacer {
+  /*border-top: 1px solid #235DA5;*/
+  /*height: 2px;*/
+  /*background: #3581DE;*/
+  font-size: 1px;
+  line-height: 1px;
+  margin-top: -1px;
+}
+.jTabPanel .panel-content {
+  background-color: #FFFFFF;
+}
+.jTabPanel .panel-content .content-wrap {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  display: none;
+  background-color: #FFFFFF;
+}
+.jTabPanel .tab-contrl-wrap .tab-item-wrap .tab-item-move li .tab-closer {
+  position: absolute;
+  right: 7px;
+  top: 9px;
+  width: 9px;
+  height: 9px;
+  background: url(../images/close.gif) no-repeat;
+  font-size: 1px;
+  cursor: pointer;
+}
+.jTabPanel .tab-contrl-wrap .tab-item-wrap .tab-item-move li .tab-closer:hover {
+  background-position: -9px;
+}

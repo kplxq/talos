@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE jetty:configuration SYSTEM "jetty-config.dtd">   
+
+<Configure class="org.mortbay.jetty.webapp.WebAppContext">
+</Configure>

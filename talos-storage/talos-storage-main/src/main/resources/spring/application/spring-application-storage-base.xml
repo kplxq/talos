@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <!--
+ - Copyright 2012-2017 Kaixindai Financing Services Jiangsu Co., Ltd.
+ -  
+ - Licensed under the Apache License, Version 2.0 (the "License");
+ - you may not use this file except in compliance with the License.
+ - You may obtain a copy of the License at
+ -  
+ -      http://www.apache.org/licenses/LICENSE-2.0
+ -  
+ - Unless required by applicable law or agreed to in writing, software
+ - distributed under the License is distributed on an "AS IS" BASIS,
+ - WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ - See the License for the specific language governing permissions and
+ - limitations under the License.
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+    http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+    http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd 
+    http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd"
+	default-autowire="byName">
+
+	<bean id="defaultMessageBroker"
+		class="com.kxd.talos.storage.service.broker.DefaultMessageBroker">
+		<property name="properties">
+			<map>
+				<entry key="bootstrap.servers" value="${bootstrap.servers}" />
+				<entry key="key.deserializer" value="org.apache.kafka.common.serialization.StringDeserializer" />
+				<entry key="value.deserializer" value="org.apache.kafka.common.serialization.StringDeserializer" />
+				<entry key="group.id" value="${group.id}" />
+			</map>
+		</property>
+
+		<property name="topics">
+			<list>
+				<value type="java.lang.String">${kafka.topic.name}</value>
+			</list>
+		</property>
+
+		<property name="batchListener" ref="talosMultiMessageListener" />
+
+		<property name="threadNumber" value="4" />
+
+		<property name="batch" value="true" />
+	</bean>
+
+	<bean id="talosMessageListener"
+		class="com.kxd.talos.storage.service.reciever.TalosMessageListener">
+		<property name="monitor" ref="defaultMonitor" />
+		<property name="workerPool" ref="defaultWorkerPool" />
+	</bean>
+
+	<bean id="talosMultiMessageListener"
+		class="com.kxd.talos.storage.service.reciever.TalosMultiMessageListener">
+		<property name="monitor" ref="defaultMonitor" />
+		<property name="workerPool" ref="defaultWorkerPool" />
+	</bean>
+
+	<bean id="defaultMonitor" class="com.kxd.talos.storage.monitor.Monitor"
+		init-method="start">
+		<property name="collector" ref="httpclientCollector" />
+	</bean>
+
+<!-- 	<bean id="loggingCollector"
+		class="com.kxd.talos.storage.monitor.collector.LoggingCollector" /> -->
+
+	<bean id="httpclientCollector" class="com.kxd.talos.storage.monitor.collector.HttpClientCollector">
+		<property name="reportUrl" value="${monitor.report.url}" />
+	</bean>
+
+	<util:list id="talos-workers">
+		<ref bean="elasticsearchStorageMessageWorker" />
+		<ref bean="hbaseStorageMessageWorker" />
+	</util:list>
+
+	<bean id="defaultWorkerPool" class="com.kxd.talos.storage.service.worker.MessageWorkerPool">
+		<property name="workers">
+			<map>
+				<entry key="${kafka.topic.name}" value-ref="talos-workers" />
+			</map>
+		</property>
+	</bean>
+</beans>

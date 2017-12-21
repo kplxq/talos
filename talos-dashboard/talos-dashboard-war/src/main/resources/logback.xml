@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- scan属性为true，可动态加载。 -->
+<configuration scan="false" scanPeriod="60 seconds" debug="false">
+  <!--属性配置引入-->  
+  <property resource="properties/logback.properties" />
+  
+
+  <!--用户请求日志的appender配置-->
+  <appender name="actionAccessAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">   
+   <!-- 正在记录的日志文件的路径及文件名 -->  
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">  
+         <!--日志文件输出的文件名-->
+        <fileNamePattern>${LOG_HOME}/${ACTION_ACCESS_LOG_FILE}</fileNamePattern>  
+       <!--日志文件保留天数-->
+         <MaxHistory>${LOG_SAVE_DAYS}</MaxHistory>
+    </rollingPolicy>  
+     <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+       <pattern>%date|%thread|%X{invokeNo}|%level|%logger{0}|%msg%n</pattern>
+     </encoder> 
+  </appender> 
+
+  <!--kxd-app业务代码错误日志的appender配置-->
+  <appender name="appErrorAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+   <!-- 正在记录的日志文件的路径及文件名 -->
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">  
+         <!--日志文件输出的文件名-->
+        <fileNamePattern>${LOG_HOME}/${APP_ERROR_LOG_FILE}</fileNamePattern>  
+       <!--日志文件保留天数-->
+         <MaxHistory>${LOG_SAVE_DAYS}</MaxHistory>
+    </rollingPolicy>  
+     <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+       <pattern>%date|%thread|%X{invokeNo}|%level|%logger{0}|%msg%n</pattern>
+     </encoder> 
+     <filter class="ch.qos.logback.classic.filter.LevelFilter">   
+	      <level>ERROR</level>   
+	      <onMatch>ACCEPT</onMatch>   
+	      <onMismatch>DENY</onMismatch>   
+     </filter> 
+  </appender> 
+
+  <appender name="appAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+   <!-- 正在记录的日志文件的路径及文件名 -->  
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">  
+         <!--日志文件输出的文件名-->
+        <fileNamePattern>${LOG_HOME}/${APP_LOG_FILE}</fileNamePattern>  
+       <!--日志文件保留天数-->
+         <MaxHistory>${LOG_SAVE_DAYS}</MaxHistory>
+    </rollingPolicy>  
+     <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+       <pattern>%date|%thread|%X{invokeNo}|%level|%logger{0}|%msg%n</pattern>
+     </encoder>
+      <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+          <level>INFO</level>
+      </filter>
+      <filter class="ch.qos.logback.classic.filter.LevelFilter">
+          <level>ERROR</level>
+          <onMatch>DENY</onMatch>
+          <onMismatch>ACCEPT</onMismatch>
+      </filter>
+  </appender> 
+
+  <logger name="Access" level="ALL" additivity="false">
+    <appender-ref ref="actionAccessAppender" />
+  </logger>
+  
+  <root>
+    <level value="DEBUG" />
+    <appender-ref ref="appErrorAppender" />
+    <appender-ref ref="appAppender" />
+  </root>
+</configuration>

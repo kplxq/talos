@@ -1,0 +1,15 @@
+<t2ep>
+	<serverPort>8090</serverPort>
+	<serverContext>/</serverContext>
+	<daemonHolding>true</daemonHolding>
+	<proxies>
+		<proxy>
+			<source>/kxd-aio-admin/kxd-demo-admin</source>
+			<sink>http://127.0.0.1:8092/kxd-demo-admin</sink>
+		</proxy>
+		<proxy>
+			<source>/kxd-demo-admin</source>
+			<sink>http://127.0.0.1:8092/kxd-demo-admin</sink>
+		</proxy>
+	</proxies>
+</t2ep>
