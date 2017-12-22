@@ -31,7 +31,7 @@ Talos系统是一个小而简的全链路监控系统，我们利用logback异�
 
 ### Talos接入说明
 
-移步 [Talos接入说明](https://kplxq.github.io/2017/12/20/Talos%E6%8E%A5%E5%85%A5%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/)
+移步 [Talos接入说明](https://kplxq.github.io/2017/12/15/Talos%E6%8E%A5%E5%85%A5%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/)
 
 ### talos-sample
 
