@@ -18,18 +18,17 @@
   <parent>
     <groupId>com.kxjf.talos</groupId>
     <artifactId>talos-dashboard</artifactId>
-    <version>${talos-version}</version>
+    <version>1.0.0-SNAPSHOT</version>
   </parent>
   <groupId>com.kxjf.talos</groupId>
   <artifactId>talos-dashboard-war</artifactId>
-  <version>${talos-version}</version>
+  <version>1.0.0-SNAPSHOT</version>
   <packaging>war</packaging>
   
   <dependencies>
   	<dependency>
   		<groupId>com.kxjf.talos</groupId>
-	<artifactId>talos-dashboard-site</artifactId>
-	<version>${talos-version}</version>
+		<artifactId>talos-dashboard-site</artifactId>
   	</dependency>
   	<dependency>
 			<groupId>org.springframework</groupId>

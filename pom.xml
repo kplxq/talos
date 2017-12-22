@@ -3,13 +3,12 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.kxjf.talos</groupId>
 	<artifactId>talos-parent</artifactId>
-	<version>${talos-version}</version>
+	<version>1.0.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>talos-parent</name>
 	<modules>
 		<module>talos</module>
 		<module>talos-common</module>
-		<!--<module>talos-es-shaded</module>-->
 		<module>talos-storage</module>
 		<module>talos-dashboard</module>
 		<module>talos-sample</module>
@@ -22,7 +21,6 @@
 		<logback-version>1.1.7</logback-version>
 		<aspect-version>1.6.11</aspect-version>
 		<jedis-version>2.4.2</jedis-version>
-		<talos-version>1.0.0</talos-version>
 		<talos-es-shaded-version>1.0.0</talos-es-shaded-version>
 	</properties>
 
@@ -31,47 +29,47 @@
 			<dependency>
 				<groupId>com.kxjf.talos</groupId>
 				<artifactId>talos-brave</artifactId>
-				<version>${talos-version}</version>
+				<version>${project.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>com.kxjf.talos</groupId>
 				<artifactId>talos-interceptor</artifactId>
-				<version>${talos-version}</version>
+				<version>${project.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>com.kxjf.talos</groupId>
 				<artifactId>talos-common</artifactId>
-				<version>${talos-version}</version>
+				<version>${project.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>com.kxjf.talos</groupId>
 				<artifactId>talos-dashboard-site</artifactId>
-				<version>${talos-version}</version>
+				<version>${project.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>com.kxjf.talos</groupId>
 				<artifactId>talos-dashboard-service</artifactId>
-				<version>${talos-version}</version>
+				<version>${project.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>com.kxjf.talos</groupId>
 				<artifactId>talos-storage-monitor</artifactId>
-				<version>${talos-version}</version>
+				<version>${project.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>com.kxjf.talos</groupId>
 				<artifactId>talos-storage-service</artifactId>
-				<version>${talos-version}</version>
+				<version>${project.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>com.kxjf.talos</groupId>
 				<artifactId>talos-storage-main</artifactId>
-				<version>${talos-version}</version>
+				<version>${project.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>com.kxjf.talos</groupId>
 				<artifactId>talos-storage-monitor</artifactId>
-				<version>${talos-version}</version>
+				<version>${project.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>com.kxjf.talos</groupId>

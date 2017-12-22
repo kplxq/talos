@@ -11,6 +11,8 @@ mvn clean install
 mvn jetty:run
 ```
 
+4、若要测试Dubbo服务，需要额外部署dubbo-redis，或自己修改配置文件自定义缓存配置
+
 ### AOP服务
 
 访问http://localhost:9908/talos-sample/aop ,页面提示`aop finish`
@@ -40,6 +42,16 @@ dashbaord:
 
 ![http1](https://kplxq.github.io/img/talos/http1.png)
 ![http2](https://kplxq.github.io/img/talos/http2.png)
+
+### Dubbo 服务
+
+需要启动sample工程的dubbo provider，启动入口：`com\kxd\talos\trace\sample\dubbo\DubboStartUp.java`
+
+访问http://localhost:9908/talos-sample/http ,页面提示 `dubbo finish`
+
+dashboard:
+![dubbo1](https://kplxq.github.io/img/talos/dubbo1.png)
+
 
 ### 异常信息展示
 
