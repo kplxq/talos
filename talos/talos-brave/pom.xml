@@ -18,11 +18,11 @@
 	<parent>
 		<groupId>com.kxjf.talos</groupId>
 		<artifactId>talos</artifactId>
-		<version>1.0.0-SNAPSHOT</version>
+		<version>${talos-version}</version>
 	</parent>
 	<groupId>com.kxjf.talos</groupId>
 	<artifactId>talos-brave</artifactId>
-	<version>1.0.0-SNAPSHOT</version>
+	<version>${talos-version}</version>
 	<dependencies>
 		<dependency>
 			<groupId>org.apache.commons</groupId>
@@ -43,4 +43,41 @@
 			<scope>provided</scope>
 		</dependency>
 	</dependencies>
+
+	<licenses>
+       <license>
+          <name>The Apache Software License, Version 2.0</name>
+          <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+          <distribution>actable</distribution>
+       </license>
+    </licenses>
+
+    <description>基于Google Dapper, Twitter Brave的分布式全链路监控</description>
+    <url>https://github.com/kplxq/talos</url>
+
+    <developers>
+        <developer>
+            <name>qiaojiansheng</name>
+            <email>qiaojiansheng@kxjf.com</email>
+            <organization>kplxq</organization>
+            <url>https://github.com/kplxq</url>
+        </developer>
+        <developer>
+            <name>lhldyf</name>
+            <email>luohui@kxjf.com</email>
+            <organization>kplxq</organization>
+            <url>https://github.com/kplxq</url>
+        </developer>
+        <developer>
+            <name>xman</name>
+            <email>yuanming@kxjf.com</email>
+            <organization>kplxq</organization>
+            <url>https://github.com/kplxq</url>
+        </developer>
+    </developers>
+
+	<scm>              
+		<url>https://github.com/kplxq/talos</url>
+		<connection>https://github.com/kplxq/talos.git</connection>
+	</scm>
 </project>

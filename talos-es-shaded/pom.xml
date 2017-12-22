@@ -3,12 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.kxjf.talos</groupId>
 	<artifactId>talos-es-shaded</artifactId>
-	<version>1.0.0-SNAPSHOT</version>
-	<parent>
-		<groupId>com.kxjf.talos</groupId>
-		<artifactId>talos-parent</artifactId>
-		<version>1.0.0-SNAPSHOT</version>
-	</parent>
+	<version>1.0.0</version>
 	<properties>
 		<elasticsearch.version>2.4.0</elasticsearch.version>
 	</properties>
@@ -62,6 +57,7 @@
 					</execution>
 				</executions>
 			</plugin>
+			
 		</plugins>
 	</build>
 	<repositories>
@@ -78,4 +74,117 @@
 		</repository>
 	</repositories>
 
+    <licenses>
+       <license>
+          <name>The Apache Software License, Version 2.0</name>
+          <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+          <distribution>actable</distribution>
+       </license>
+    </licenses>
+
+    <name>talos-es-shaded</name>
+    <description>基于Google Dapper, Twitter Brave的分布式全链路监控</description>
+    <url>https://github.com/kplxq/talos</url>
+
+    <developers>
+        <developer>
+            <name>qiaojiansheng</name>
+            <email>qiaojiansheng@kxjf.com</email>
+            <organization>kplxq</organization>
+            <url>https://github.com/kplxq</url>
+        </developer>
+        <developer>
+            <name>lhldyf</name>
+            <email>luohui@kxjf.com</email>
+            <organization>kplxq</organization>
+            <url>https://github.com/kplxq</url>
+        </developer>
+        <developer>
+            <name>xman</name>
+            <email>yuanming@kxjf.com</email>
+            <organization>kplxq</organization>
+            <url>https://github.com/kplxq</url>
+        </developer>
+    </developers>
+
+	<scm>              
+		<url>https://github.com/kplxq/talos</url>
+		<connection>https://github.com/kplxq/talos.git</connection>
+	</scm>
+	
+	<distributionManagement>
+		<snapshotRepository>
+		  <id>sonatype-nexus-snapshots</id>
+		  <name>OSS Snapshots Repository</name>
+		  <url>https://oss.sonatype.org/content/repositories/snapshots/</url>  
+		</snapshotRepository>
+		<repository>
+		  <id>sonatype-nexus-staging</id>
+		  <name>OSS Staging Repository</name>
+		  <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+		</repository>
+	</distributionManagement>
+
+	<profiles>
+  	<profile> 
+		<id>release-talos</id>
+		<build>
+		<plugins>
+		  <plugin>
+		      <groupId>org.sonatype.plugins</groupId>
+		      <artifactId>nexus-staging-maven-plugin</artifactId>
+		      <version>1.6.7</version>
+		      <extensions>true</extensions>
+		      <configuration>
+		        <serverId>sonatype-nexus-staging</serverId>
+		        <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+		        <autoReleaseAfterClose>true</autoReleaseAfterClose>
+		      </configuration>
+		    </plugin>
+		    <plugin>
+		      <groupId>org.apache.maven.plugins</groupId>
+		      <artifactId>maven-source-plugin</artifactId>
+		      <version>2.2.1</version>
+		      <executions>
+		        <execution>
+		          <id>attach-sources</id>
+		          <goals>
+		            <goal>jar-no-fork</goal>
+		          </goals>
+		        </execution>
+		      </executions>
+		    </plugin>
+		    <plugin>
+		      <groupId>org.apache.maven.plugins</groupId>
+		      <artifactId>maven-javadoc-plugin</artifactId>
+		      <version>2.9.1</version>
+		      <executions>
+		        <execution>
+		          <id>attach-javadocs</id>
+		          <goals>
+		            <goal>jar</goal>
+		          </goals>
+		        </execution>
+		      </executions>
+		    </plugin>
+		    <plugin>
+		      <groupId>org.apache.maven.plugins</groupId>
+		      <artifactId>maven-gpg-plugin</artifactId>
+		      <version>1.5</version>
+		      <executions>
+		        <execution>
+		          <id>sign-artifacts</id>
+		          <phase>verify</phase>
+		          <goals>
+		            <goal>sign</goal>
+		          </goals>
+		        </execution>
+		      </executions>
+		    </plugin>
+		</plugins>
+		</build>
+
+		
+	  </profile>
+	</profiles>
 </project>

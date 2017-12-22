@@ -13,7 +13,7 @@ mvn jetty:run
 
 ### AOP服务
 
-访问http://localhost:9908/talos-sample/aop， 页面提示`aop finish`
+访问http://localhost:9908/talos-sample/aop ,页面提示`aop finish`
 
 查看[talos-dashboard](http://talos-dashboard:8080/talos-dashboard/search/page)，输入url作为查询条件
 
@@ -34,16 +34,16 @@ mvn jetty:run
 
 ### http服务
 
-访问http://localhost:9908/talos-sample/http,页面提示`http service finish with your param:http-client-param`
+访问http://localhost:9908/talos-sample/http ,页面提示 `http service finish with your param:http-client-param`
 
-查看[talos-dashboard](http://talos-dashboard:8080/talos-dashboard/search/page)，输入url作为查询条件
+dashbaord:
 
 ![http1](https://kplxq.github.io/img/talos/http1.png)
 ![http2](https://kplxq.github.io/img/talos/http2.png)
 
 ### 异常信息展示
 
-访问http://localhost:9908/talos-sample/exception,页面提示`exception finish`
+访问http://localhost:9908/talos-sample/exception ,页面提示`exception finish`
 
 ![ex1](https://kplxq.github.io/img/talos/ex1.png)
 ![ex2](https://kplxq.github.io/img/talos/ex2.png)
@@ -51,7 +51,9 @@ mvn jetty:run
 
 ### 多线程
 
-访问http://localhost:9908/talos-sample/thread,页面提示`thread finish`
+访问http://localhost:9908/talos-sample/thread ,页面提示`thread finish`
+
+dashbaord:
 
 ![thread1](https://kplxq.github.io/img/talos/thread1.png)
 ![thread2](https://kplxq.github.io/img/talos/thread2.png)
@@ -59,5 +61,7 @@ mvn jetty:run
 ### 耗时信息
 
 访问http://localhost:9908/talos-sample/sleep1s
+
+dashbaord:
 
 ![sleep1s](https://kplxq.github.io/img/talos/sleep1s.png)

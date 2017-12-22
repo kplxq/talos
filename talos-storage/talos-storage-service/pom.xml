@@ -19,15 +19,15 @@
 	<parent>
 		<groupId>com.kxjf.talos</groupId>
 		<artifactId>talos-storage</artifactId>
-		<version>1.0.0-SNAPSHOT</version>
+		<version>${talos-version}</version>
 	</parent>
 	<artifactId>talos-storage-service</artifactId>
-	<version>1.0.0-SNAPSHOT</version>
+	<version>${talos-version}</version>
 	<dependencies>
 		<dependency>
 			<groupId>com.kxjf.talos</groupId>
 			<artifactId>talos-storage-monitor</artifactId>
-			<version>1.0.0-SNAPSHOT</version>
+			<version>${talos-version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.kafka</groupId>
@@ -192,7 +192,7 @@
 		<dependency>
 			<groupId>com.kxjf.talos</groupId>
 			<artifactId>talos-es-shaded</artifactId>
-			<version>1.0.0-SNAPSHOT</version>
+			<version>${talos-version}</version>
 		</dependency>
 
 	</dependencies>
