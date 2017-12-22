@@ -39,10 +39,14 @@ Talos系统是一个小而简的全链路监控系统，我们利用logback异�
 
 ## 效果展示
 
+首页：
 ![dashboard 首页](https://kplxq.github.io/img/talos/index.png)
 
+搜索页：
 ![dashboard 搜索页](https://kplxq.github.io/img/talos/searchpage.png)
 
+调用链：
 ![dashboard 调用链页](https://kplxq.github.io/img/talos/treepage.png)
 
+健康度：
 ![dashboard 健康度](https://kplxq.github.io/img/talos/monitor.png)
