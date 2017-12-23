@@ -4,7 +4,7 @@
 
 
 [Google Dapper](http://research.google.com/pubs/pub36356.html)是业界做全链路监控的理论基础，16年我们逐步向微服务迈进时预言过一年后产线将运行上百个应用节点，于是着手Talos的调研工作，Twitter开源的[Brave](https://github.com/openzipkin/brave)是一个大而全的分布式跟踪系统，但Brave没有提供对Dubbo的支持，而我们分布式框架使用的正是Dubbo，并且在此之前我们的开发框架已经有一些框架性的日志可以复用，因此我们决定参考Brave，自研适用于现有开鑫金服技术架构的全链路监控系统。
-【特别说明：Talos系统中有引用Brave源码，主要参考了Brave中Trace/Span的模型定义及设值的代码，代码位于talos/talos-brave这个module。】
+【特别说明：Talos系统中有引用Brave源码，主要参考了Brave中Trace/Span的模型定义，代码位于talos/talos-brave这个module。】
 
 Talos系统是一个小而简的全链路监控系统，我们利用logback异步输出日志，直接将日志输出至kafka，talos-storage从kafka拉数据并存储至es和hbase，talos-dashboard通过es和hbase的数据进行展示，技术架构及部署架构移步[Talos架构设计](https://kplxq.github.io/2017/12/15/%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/)
 
