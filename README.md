@@ -11,8 +11,9 @@ Talos系统是一个小而简的全链路监控系统，我们利用logback异�
 ## 技术交流
 
 QQ交流群：637375352
+
 微信公众号：
-![](/img/wx_gzh.jpg)
+![](https://kplxq.github.io/img/wx_gzh.jpg)
 
 ## 适用场景
 
