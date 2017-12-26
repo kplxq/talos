@@ -8,6 +8,12 @@
 
 Talos系统是一个小而简的全链路监控系统，我们利用logback异步输出日志，直接将日志输出至kafka，talos-storage从kafka拉数据并存储至es和hbase，talos-dashboard通过es和hbase的数据进行展示，技术架构及部署架构移步[Talos架构设计](https://kplxq.github.io/2017/12/15/%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/)
 
+## 技术交流
+
+QQ交流群：637375352
+微信公众号：
+![](/img/wx_gzh.jpg)
+
 ## 适用场景
 
 ### 技术栈
