@@ -17,6 +17,7 @@
 package com.kxd.talos.trace.sample.controller;
 
 import com.kxd.talos.trace.interceptor.server.http.HttpClientTemplate;
+import com.kxd.talos.trace.sample.activemq.service.ProducerService;
 import com.kxd.talos.trace.sample.dto.ParamDto;
 import com.kxd.talos.trace.sample.dubbo.DubboService;
 import com.kxd.talos.trace.sample.service.AopServiceA;
@@ -43,6 +44,9 @@ public class SampleController {
 	@Autowired
 	private HttpClientTemplate httpClientTemplate;
 
+	@Autowired
+	private ProducerService producerService;
+
 	@RequestMapping("/aop")
 	@ResponseBody public String aop() {
 		aopServiceA.aop();
@@ -68,7 +72,8 @@ public class SampleController {
 
 	@RequestMapping("/mq")
 	@ResponseBody public String mq() {
-		return "mq todo!";
+		producerService.sendMessage("lhldyf");
+		return "Send message finish.";
 	}
 
 	@RequestMapping("/exception")

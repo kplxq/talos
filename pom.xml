@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.kxjf.talos</groupId>
 	<artifactId>talos-parent</artifactId>
-	<version>1.0.0-SNAPSHOT</version>
+	<version>1.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>talos-parent</name>
 	<modules>
@@ -22,6 +22,8 @@
 		<aspect-version>1.6.11</aspect-version>
 		<jedis-version>2.4.2</jedis-version>
 		<talos-es-shaded-version>1.0.0</talos-es-shaded-version>
+		<talos-es-storage-version>1.0.0-SNAPSHOT</talos-es-storage-version>
+		<talos-es-dashboard-version>1.0.0-SNAPSHOT</talos-es-dashboard-version>
 	</properties>
 
 	<dependencyManagement>
@@ -44,32 +46,32 @@
 			<dependency>
 				<groupId>com.kxjf.talos</groupId>
 				<artifactId>talos-dashboard-site</artifactId>
-				<version>${project.version}</version>
+				<version>${talos-es-dashboard-version}</version>
 			</dependency>
 			<dependency>
 				<groupId>com.kxjf.talos</groupId>
 				<artifactId>talos-dashboard-service</artifactId>
-				<version>${project.version}</version>
+				<version>${talos-es-dashboard-version}</version>
 			</dependency>
 			<dependency>
 				<groupId>com.kxjf.talos</groupId>
 				<artifactId>talos-storage-monitor</artifactId>
-				<version>${project.version}</version>
+				<version>${talos-es-storage-version}</version>
 			</dependency>
 			<dependency>
 				<groupId>com.kxjf.talos</groupId>
 				<artifactId>talos-storage-service</artifactId>
-				<version>${project.version}</version>
+				<version>${talos-es-storage-version}</version>
 			</dependency>
 			<dependency>
 				<groupId>com.kxjf.talos</groupId>
 				<artifactId>talos-storage-main</artifactId>
-				<version>${project.version}</version>
+				<version>${talos-es-storage-version}</version>
 			</dependency>
 			<dependency>
 				<groupId>com.kxjf.talos</groupId>
 				<artifactId>talos-storage-monitor</artifactId>
-				<version>${project.version}</version>
+				<version>${talos-es-storage-version}</version>
 			</dependency>
 			<dependency>
 				<groupId>com.kxjf.talos</groupId>
@@ -205,6 +207,13 @@
 				<groupId>com.alibaba</groupId>
 				<artifactId>dubbo-rpc-api</artifactId>
 				<version>2.5.4</version>
+			</dependency>
+
+			<!-- active-mq -->
+			<dependency>
+				<groupId>org.apache.activemq</groupId>
+				<artifactId>activemq-core</artifactId>
+				<version>5.7.0</version>
 			</dependency>
 
 			<!--others-->
