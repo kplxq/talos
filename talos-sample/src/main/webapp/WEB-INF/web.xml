@@ -9,6 +9,7 @@
 			classpath:spring/talos-config-base.xml,
 			classpath:spring/talos-config-interceptors.xml,
             classpath:spring/spring-system-base.xml,
+			classpath:spring/spring-system-activemq.xml,
             classpath:spring/dubbo-demo-consumer.xml
         </param-value>
 	</context-param>

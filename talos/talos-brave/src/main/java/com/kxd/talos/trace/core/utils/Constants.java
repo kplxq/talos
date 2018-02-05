@@ -226,6 +226,13 @@ public final class Constants {
   public static final String SERVICE_TYPE_HTTP_SERVER  = "http-server";
   
   public static final String SERVICE_TYPE_HTTP_CLIENT  = "http-client";
+
+  public static final String SERVICE_TYPE_ACTIVE_MQ_CLIENT = "activemq-client";
+
+  public static final String SERVICE_TYPE_ACTIVE_MQ_SERVER = "activemq-server";
+
+  public static final String ACTIVE_MQ_DESTINATION = "activemq-destination";
+
   
   private Constants() {
   }
