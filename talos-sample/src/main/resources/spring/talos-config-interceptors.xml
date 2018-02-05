@@ -58,4 +58,17 @@
 		<constructor-arg ref="talos" />
 	</bean>
     <!-- http client interceptor config ends -->
+
+
+	<bean id="messageListenerInterceptor" class="com.kxd.talos.trace.interceptor.server.activemq.ActiveMqMessageListenerInterceptor" >
+		<property name="talos" ref="talos" />
+	</bean>
+
+	<aop:config>
+		<aop:pointcut id="messageListenerPointcut"
+					  expression="execution(* javax.jms.MessageListener.onMessage (..))" />
+		<aop:advisor advice-ref="messageListenerInterceptor" pointcut-ref="messageListenerPointcut" order="99" />
+	</aop:config>
+
+	<aop:config proxy-target-class="true" />
 </beans>
