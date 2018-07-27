@@ -53,7 +53,6 @@ public class MonitorReportController {
     @Autowired
     private IMonitorDataHolder monitorDataHolder;
 
-    // @AccessCode("TALOS01020101")
     @RequestMapping(value = "/report", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
     @ResponseBody
     public String process(@RequestBody String apiRequest) {

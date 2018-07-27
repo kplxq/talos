@@ -22,6 +22,7 @@ import java.util.Map.Entry;
 import com.kxd.talos.dashboard.service.client.dto.QueryConditionRequest;
 import com.kxd.talos.dashboard.service.client.result.TalosHbaseQueryDetailDto;
 import com.kxd.talos.dashboard.service.client.result.TalosSpanDetailDto;
+import com.sun.org.apache.bcel.internal.generic.NEW;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -40,6 +41,10 @@ public class HbaseQueryTraceDetailDataAssembler implements
         IBizzDataAssembler<TalosHbaseQueryDetailDto, TalosTraceHbaseTableDmo, TalosTraceHbaseTableDmo> {
 
     static final Logger logger = LoggerFactory.getLogger(HbaseQueryTraceDetailDataAssembler.class);
+
+    static final String OLD_SPLIT_STR = "&";
+
+    static final String NEW_SPLIT_STR = "&@&@&";
 
     @Override
     public TalosTraceHbaseTableDmo assembleRequestData(QueryConditionRequest<? extends Entity> request) {
@@ -88,26 +93,18 @@ public class HbaseQueryTraceDetailDataAssembler implements
                     continue;
                 }
 
-                String[] oneRow = data.split(":");
-                if(oneRow.length > 2) {
-                     if( "CT".equals(oneRow[0])) {
-                         oneRow = data.split("CT:");
-                         oneRow[0] = "CT";
-                     }else if( "EM".equals(oneRow[0])) {
-                         oneRow = data.split("EM:");
-                         oneRow[0] = "EM";
-                     }
-                }
-                if (oneRow.length != 2) {
-                    if (!"TALOS".equals(data)) {
+                String title, val;
+
+                if(data.indexOf(":") > 0) {
+                    title = data.substring(0, data.indexOf(":"));
+                    val = data.substring(data.indexOf(":")+1);
+                } else {
+                    if (!"TALOS".equals(data) && !"SKYEYE".equals(data) && !"CT:".equals(data)) {
                         logger.warn("data format error, can't split by ':', data:{}", data);
                     }
-
                     continue;
                 }
 
-                String title = oneRow[0];
-                String val = oneRow[1];
                 switch (title) {
                 case "TD":
                     dto.setTraceId(val);
@@ -175,8 +172,18 @@ public class HbaseQueryTraceDetailDataAssembler implements
             return null;
         }
 
+        if(val.indexOf(NEW_SPLIT_STR) > -1) {
+            return convertContentToMap(val, NEW_SPLIT_STR);
+        } else if(val.indexOf(OLD_SPLIT_STR) > -1) {
+            return convertContentToMap(val, OLD_SPLIT_STR);
+        } else {
+            return null;
+        }
+    }
+
+    static Map<String, String> convertContentToMap(String val, String splitStr) {
         Map<String, String> content = new HashMap<>();
-        for (String row : val.split("&@&@&")) {
+        for (String row : val.split(splitStr)) {
             String[] oneRow = row.split("=");
             if (oneRow.length != 2) {
                 logger.warn("data format error, can't split by '=', data:{}", row);

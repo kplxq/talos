@@ -44,7 +44,8 @@
 			</pattern>
 		</encoder>
 	</appender>
-	<!--用户请求日志的appender配置 -->
+
+	<!-- talos begin -->
 	<appender name="talosTraceCollectorFileAppender"
 			  class="ch.qos.logback.core.rolling.RollingFileAppender">
 		<!-- 正在记录的日志文件的路径及文件名 -->
@@ -82,9 +83,11 @@
 	</appender>
 	<logger name="com.kxd.talos.trace.core.collector" level="ALL"
 			additivity="true">
-		<appender-ref ref="asyncTalosKafkaAppender" />
+		<!--<appender-ref ref="asyncTalosKafkaAppender" />-->
 		<appender-ref ref="talosTraceCollectorFileAppender" />
 	</logger>
+
+	<!-- talos end -->
 	<!-- kafka 的日志，无需在业务系统中打印-->
 	<logger name="org.apache.kafka" level="OFF"/>
 

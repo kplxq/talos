@@ -16,7 +16,7 @@
 			<th>状态</th>
 			<th>服务/方法</th>
 			<th>错误编码</th>
-			<th>耗时</th>
+			<th>耗时(毫秒)</th>
 		</tr>
 	</thead>
 	<tbody>

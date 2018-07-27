@@ -20,6 +20,7 @@ import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
+import com.kxd.framework.utils.DateUtil;
 import com.kxd.talos.storage.service.data.TalosMessage;
 import com.kxd.talos.storage.service.elasticsearch.entity.TalosTraceElasticsearchEntity;
 import org.apache.commons.lang3.StringUtils;
@@ -176,6 +177,7 @@ public class ElasticsearchStorageMessageWorker extends AbstractMessageWorker {
                     }
                     tmpEntity.setTraceid(traceid);
                     tmpEntity.setContents(new String[] { sb.toString() });
+                    tmpEntity.setCreateTime(DateUtil.getDate());
                     entities.add(tmpEntity);
                 }
                 elasticsearchService.upsert(entities);

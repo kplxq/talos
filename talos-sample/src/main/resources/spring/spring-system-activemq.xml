@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+     http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+    http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+
+    <!-- 真正可以产生Connection的ConnectionFactory，由对应的 JMS服务厂商提供-->
+    <bean id="targetConnectionFactory" class="org.apache.activemq.ActiveMQConnectionFactory">
+        <property name="brokerURL" value="vm://localhost"/>
+    </bean>
+
+    <!-- Spring用于管理真正的ConnectionFactory的ConnectionFactory -->
+    <bean id="connectionFactory" class="org.springframework.jms.connection.SingleConnectionFactory">
+        <!-- 目标ConnectionFactory对应真实的可以产生JMS Connection的ConnectionFactory -->
+        <property name="targetConnectionFactory" ref="targetConnectionFactory"/>
+    </bean>
+
+    <!-- Spring提供的JMS工具类，它可以进行消息发送、接收等 -->
+    <bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate">
+        <!-- 这个connectionFactory对应的是我们定义的Spring提供的那个ConnectionFactory对象 -->
+        <property name="connectionFactory" ref="connectionFactory"/>
+        <property name="defaultDestination" ref="defaultDestination" />
+    </bean>
+
+    <bean id="talosJmsTemplate" class="com.kxd.talos.trace.interceptor.server.activemq.TalosActiveMqJmsTemplate">
+        <property name="connectionFactory" ref="connectionFactory"/>
+        <property name="defaultDestination" ref="defaultDestination" />
+        <property name="wrappedJmsTemplate" ref="jmsTemplate"/>
+        <property name="talos" ref="talos" />
+    </bean>
+
+    <!--这个是队列目的地-->
+    <bean id="defaultDestination" class="org.apache.activemq.command.ActiveMQQueue">
+        <constructor-arg>
+            <value>queue</value>
+        </constructor-arg>
+    </bean>
+
+    <bean id="consumerMessageListener" class="com.kxd.talos.trace.sample.activemq.listener.ConsumerMessageListener" />
+
+    <bean id="consumerMessageListenerContainer" class="org.springframework.jms.listener.DefaultMessageListenerContainer">
+        <property name="connectionFactory" ref="connectionFactory"/>
+        <property name="destination" ref="defaultDestination"/>
+        <property name="messageListener" ref="consumerMessageListener"/>
+    </bean>
+
+    <bean id="producerService" class="com.kxd.talos.trace.sample.activemq.service.impl.ProducerServiceImpl" />
+    <bean id="consumerService" class="com.kxd.talos.trace.sample.activemq.service.impl.ConsumerServiceImpl" />
+
+
+</beans>

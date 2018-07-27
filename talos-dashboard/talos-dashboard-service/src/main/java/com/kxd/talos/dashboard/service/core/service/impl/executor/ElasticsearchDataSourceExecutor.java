@@ -25,12 +25,14 @@ import com.kxd.talos.dashboard.service.core.dmo.TalosTraceElasticsearchEntity;
 import com.kxd.talos.dashboard.service.core.service.intf.IBizzDataAssembler;
 import com.kxd.talos.dashboard.service.core.service.intf.IDataSourceExecutor;
 import com.kxd.talos.dashboard.service.core.service.intf.elasticsearch.TalosTraceRepository;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.kxd.framework.lang.AppException;
@@ -90,9 +92,14 @@ public class ElasticsearchDataSourceExecutor
 
         try {
             Pageable page = new PageRequest(queryCondition.getPage().getCurrentPage() - 1, queryCondition.getPage()
-                    .getPageSize());
+                    .getPageSize(), Sort.Direction.DESC, "createTime");
 
-            origResultList = repository.findByContents(queryCondition.getBizzNo(), page);
+            if(StringUtils.isBlank(queryCondition.getBizzNo())) {
+                origResultList = repository.findAll(page);
+            } else {
+                origResultList = repository.findByContents(queryCondition.getBizzNo(), page);
+            }
+
             for (TalosTraceElasticsearchEntity origResult : origResultList) {
                 realResult = assembler.assembleResultData(origResult);
                 realResultList.add(realResult);

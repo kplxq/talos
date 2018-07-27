@@ -14,6 +14,7 @@ mvn jetty:run
 ```
 
 4、若要测试Dubbo服务，需要额外部署dubbo-redis，或自己修改配置文件自定义缓存配置
+5、若要测试ActiveMq服务，请先安装并启动ActiveMq。
 
 ### AOP服务
 
@@ -54,6 +55,22 @@ dashbaord:
 dashboard:
 ![dubbo1](https://kplxq.github.io/img/talos/dubbo1.png)
 
+### ActiveMq
+请先本地安装ActiveMq，若未完成安装，可参考[官方安装部署文档](http://activemq.apache.org/getting-started.html)
+
+访问http://localhost:9908/talos-sample/mq ,页面提示 `Send message finish.`
+
+可以在Console中看到有对应的日志：
+```
+---------------生产者发送消息-----------------
+---------------生产者发了一个消息：lhldyf
+TextMessage
+---------------消费者接收消息-----------------
+---------------消费者收到一个文本消息：lhldyf
+```
+
+dashboard:
+![dubbo1](https://kplxq.github.io/img/talos/mq1.png)
 
 ### 异常信息展示
 

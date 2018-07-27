@@ -15,6 +15,7 @@
  */
 package com.kxd.talos.storage.service.elasticsearch.entity;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -31,7 +32,7 @@ import com.kxd.framework.core.entity.Entity;
  * 
  * @author lhldyf 2016年10月13日
  */
-@Document(indexName = "talos", type = "trace")
+@Document(indexName = "skyeye", type = "trace")
 public class TalosTraceElasticsearchEntity extends Entity {
 
     /**
@@ -44,6 +45,8 @@ public class TalosTraceElasticsearchEntity extends Entity {
     private String            traceid;
 
     private String[]          contents;
+
+    private Date createTime;
 
     public TalosTraceElasticsearchEntity() {
 
@@ -85,12 +88,14 @@ public class TalosTraceElasticsearchEntity extends Entity {
     public Map<String, Object> toUpsertMap() {
         Map<String, Object> map = new HashMap<>();
         map.put("contents", contents);
+        map.put("createTime", createTime);
         return map;
     }
 
     public Map<String, Object> toScriptMap() {
         Map<String, Object> map = new HashMap<>();
         map.put("content", contentToString());
+        map.put("createTime", createTime);
         return map;
     }
 
@@ -106,4 +111,11 @@ public class TalosTraceElasticsearchEntity extends Entity {
         }
     }
 
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
 }

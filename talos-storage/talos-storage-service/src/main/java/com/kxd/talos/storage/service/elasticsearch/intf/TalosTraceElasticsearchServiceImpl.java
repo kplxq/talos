@@ -39,7 +39,7 @@ public class TalosTraceElasticsearchServiceImpl implements TalosTraceElasticsear
     @Autowired
     private CustomElasticsearchTemplate template;
 
-    private static final String         SCRIPT      = "ctx._source.contents = (ctx._source.contents) ? ctx._source.contents + content  : [content]";
+    private static final String         SCRIPT      = "ctx._source.contents = (ctx._source.contents) ? ctx._source.contents + content  : [content]; ctx._source.createTime=createTime";
 
     private static final String         SCRIPT_LANG = "groovy";
 

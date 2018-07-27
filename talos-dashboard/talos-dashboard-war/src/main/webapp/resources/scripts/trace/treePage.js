@@ -15,7 +15,7 @@
  */
 var init = function() {
 	// 如果是从另一个页面跳过来的，初始化页面的traceId，一次性使用
-	var menu = parent.$("#TALOS01010200");
+	var menu = parent.$("#SKYEYE01010200");
 	if(menu.length!=0) {
 		var traceId = menu.attr("traceId");
 		$("#traceId").val(traceId);

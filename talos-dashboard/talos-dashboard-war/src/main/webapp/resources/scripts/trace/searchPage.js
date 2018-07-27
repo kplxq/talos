@@ -38,13 +38,13 @@ var initCallBack=function(){
 
 var viewDetail = function(e) {
 	var traceId = $(e.target).parent("td").parent("tr").children(".traceId").text();
-	var menu_tab = parent.$("#tab_TALOS01010200");
-	var menu = parent.$("#TALOS01010200");
+	var menu_tab = parent.$("#tab_SKYEYE01010200");
+	var menu = parent.$("#SKYEYE01010200");
 	
 	// 已经打开了调用链展示标签页，则设置traceId查询，并跳到该页面
 	if( menu_tab.length > 0 ) {
-		parent.frames["iframe_TALOS01010200"].$("#traceId").val(traceId);
-		parent.frames["iframe_TALOS01010200"].$("#submitQuery").click();
+		parent.frames["iframe_SKYEYE01010200"].$("#traceId").val(traceId);
+		parent.frames["iframe_SKYEYE01010200"].$("#submitQuery").click();
 		menu.trigger("click");
 		return false;
 	}else {

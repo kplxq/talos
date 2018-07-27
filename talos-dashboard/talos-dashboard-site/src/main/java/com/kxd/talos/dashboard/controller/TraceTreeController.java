@@ -163,8 +163,7 @@ public class TraceTreeController {
                     } catch (Exception e) {
                 	    continue;
                     }
-                    Timestamp tm = new Timestamp(time);
-                    Date date = tm;
+                    Date date = new Date(time);
                     entry.setValue(DateUtil.format(date, DateUtil.yyyy_MM_dd_HH_mm_ss));
                 }
             }
