@@ -22,8 +22,8 @@
 		<aspect-version>1.6.11</aspect-version>
 		<jedis-version>2.4.2</jedis-version>
 		<talos-es-shaded-version>1.0.0</talos-es-shaded-version>
-		<talos-es-storage-version>1.0.0-SNAPSHOT</talos-es-storage-version>
-		<talos-es-dashboard-version>1.0.0-SNAPSHOT</talos-es-dashboard-version>
+		<talos-es-storage-version>1.0.1-SNAPSHOT</talos-es-storage-version>
+		<talos-es-dashboard-version>1.0.1-SNAPSHOT</talos-es-dashboard-version>
 	</properties>
 
 	<dependencyManagement>
@@ -66,11 +66,6 @@
 			<dependency>
 				<groupId>com.kxjf.talos</groupId>
 				<artifactId>talos-storage-main</artifactId>
-				<version>${talos-es-storage-version}</version>
-			</dependency>
-			<dependency>
-				<groupId>com.kxjf.talos</groupId>
-				<artifactId>talos-storage-monitor</artifactId>
 				<version>${talos-es-storage-version}</version>
 			</dependency>
 			<dependency>
@@ -207,6 +202,7 @@
 				<groupId>com.alibaba</groupId>
 				<artifactId>dubbo-rpc-api</artifactId>
 				<version>2.5.4</version>
+				<scope>provided</scope>
 			</dependency>
 
 			<!-- active-mq -->
@@ -214,6 +210,7 @@
 				<groupId>org.apache.activemq</groupId>
 				<artifactId>activemq-core</artifactId>
 				<version>5.7.0</version>
+				<scope>provided</scope>
 			</dependency>
 
 			<!--others-->
@@ -242,6 +239,7 @@
 				<groupId>redis.clients</groupId>
 				<artifactId>jedis</artifactId>
 				<version>${jedis-version}</version>
+				<scope>provided</scope>
 			</dependency>
 
 			<!--talos logback dependency-->
@@ -342,6 +340,7 @@
 		  <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
 		</repository>
 	</distributionManagement>
+
 
 	<profiles>
   	<profile> 

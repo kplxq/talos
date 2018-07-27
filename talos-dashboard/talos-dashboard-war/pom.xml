@@ -18,11 +18,11 @@
   <parent>
     <groupId>com.kxjf.talos</groupId>
     <artifactId>talos-dashboard</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.0.1-SNAPSHOT</version>
   </parent>
   <groupId>com.kxjf.talos</groupId>
   <artifactId>talos-dashboard-war</artifactId>
-  <version>1.0.0-SNAPSHOT</version>
+  <version>1.0.1-SNAPSHOT</version>
   <packaging>war</packaging>
   
   <dependencies>
@@ -101,6 +101,12 @@
 	  <dependency>
 		  <groupId>org.aspectj</groupId>
 		  <artifactId>aspectjrt</artifactId>
+	  </dependency>
+	  <dependency>
+		  <groupId>redis.clients</groupId>
+		  <artifactId>jedis</artifactId>
+		  <version>2.6.2</version>
+		  <scope>compile</scope>
 	  </dependency>
   </dependencies>
 
