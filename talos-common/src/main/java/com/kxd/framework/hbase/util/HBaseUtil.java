@@ -18,7 +18,7 @@ package com.kxd.framework.hbase.util;
 import java.util.Date;
 import java.util.List;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.hadoop.hbase.util.Bytes;
 import org.springframework.util.CollectionUtils;
 

@@ -29,6 +29,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpServletResponseWrapper;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.util.AntPathMatcher;
 import org.springframework.util.PathMatcher;
 
@@ -68,8 +69,11 @@ public class TalosServletFilter implements Filter {
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response,
 			FilterChain filterChain) throws IOException, ServletException {
-
-        String currentURL = ((HttpServletRequest) request).getPathInfo().replaceAll("//", "/");
+		String currentUrl = ((HttpServletRequest) request).getServletPath();
+		if(StringUtils.isEmpty(currentUrl)) {
+			return;
+		}
+        String currentURL = currentUrl.replaceAll("//", "/");
 		boolean needFilter = isNeedFilter(pathPatternArray,currentURL);
 		
 		String alreadyFilteredAttributeName = getAlreadyFilteredAttributeName();

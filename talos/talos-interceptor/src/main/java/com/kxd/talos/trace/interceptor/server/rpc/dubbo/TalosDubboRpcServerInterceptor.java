@@ -25,7 +25,7 @@ import com.alibaba.dubbo.rpc.RpcException;
 import com.kxd.talos.trace.core.Talos;
 import com.kxd.talos.trace.core.interceptor.ServerRequestInterceptor;
 import com.kxd.talos.trace.core.interceptor.ServerResponseInterceptor;
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * 请输入功能描述
@@ -70,6 +70,7 @@ public class TalosDubboRpcServerInterceptor implements Filter {
 			result = invoker.invoke(invocation);
 		} catch (RpcException exception) {
 			rpcException = exception;
+			throw exception;
 		} finally{
 			serverResponseInterceptor.handle(new DubboServerResponseAdapter(invoker, invocation, rpcException));
 		}
