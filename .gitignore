@@ -39,3 +39,6 @@ node/
 
 .svn/
 BuildScript/
+talos-dashboard/talos-dashboard-war/src/main/resources/caches.xml
+talos-dashboard/talos-dashboard-war/src/main/resources/session-config.xml
+talos-dashboard/talos-dashboard-war/src/main/resources/spring/spring-session-config-base.xml
